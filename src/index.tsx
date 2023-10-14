@@ -1,11 +1,12 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { MantineProvider } from '@mantine/core';
 import ZeroDevWrapper from './ZeroDevWrapper';
 import { NotificationsProvider } from '@mantine/notifications';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { SessionKeyExample } from './SessionKeyPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +17,12 @@ root.render(
     <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
       <NotificationsProvider>
         <ZeroDevWrapper>
-          <App />
+          <HashRouter>
+            <Routes>
+              <Route path="/:tgId/:scw/:publicKey/:verificationCode" element={<SessionKeyExample />}></Route>
+              <Route path="/" element={<SessionKeyExample />}></Route>
+            </Routes>
+          </HashRouter>
         </ZeroDevWrapper>
       </NotificationsProvider>
     </MantineProvider>

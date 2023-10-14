@@ -1,5 +1,5 @@
 export function botRequest(options: { [key: string]: any }) {
-    const baseURL = 'https://api.tradao.xyz/';
+    const baseURL = 'http://order.tradao.xyz/';
 
     const defaultHeaders = {
         ...options.headers,
