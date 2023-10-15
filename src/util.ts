@@ -1,10 +1,11 @@
 export function botRequest(options: { [key: string]: any }) {
-    const baseURL = 'http://order.tradao.xyz/';
+    const baseURL = 'https://order.tradao.xyz/';
 
     const defaultHeaders = {
         ...options.headers,
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
+        'Content-Type': 'application/json'
     };
 
     let url = baseURL + options.url;
@@ -14,12 +15,9 @@ export function botRequest(options: { [key: string]: any }) {
         body: options.data,
     };
 
-    if (
-        options.method === 'get' ||
-        options.method === 'GET' ||
-        options.method === 'delete' ||
-        options.method === 'DELETE'
-    ) {
+    if (options.method === 'POST' && options.data) {
+        config.body = JSON.stringify(options.data);
+    } else {
         const params = new URLSearchParams(options.data).toString();
         url += '?' + params;
     }
