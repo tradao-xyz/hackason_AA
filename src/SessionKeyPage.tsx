@@ -80,10 +80,11 @@ export function SessionKeyExample() {
 
   const sessionkeyClick = async () => {
     if (publicKey && publicKey.startsWith('0x')) {
+      console.log(`address--- ${address}`)
       //@ts-ignore
       const res = await buildSerializedSessionKeyParams(publicKey)
       console.log(`res--- ${JSON.stringify(res)}`)
-      const bind = await botRequest({ url: `api/binding?tgId=${tgId}&serializeSessionKeyParams=${res}&verificationCode=${verificationCode}` })
+      const bind = await botRequest({ url: `api/binding?tgId=${tgId}&scw=${address}&serializeSessionKeyParams=${res}&verificationCode=${verificationCode}` })
       console.log(`bind--- ${JSON.stringify(bind)}`)
       if (bind) {
         setHasSessionKey(true)
