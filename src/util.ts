@@ -5,7 +5,6 @@ export function botRequest(options: { [key: string]: any }) {
         ...options.headers,
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
-        'Content-Type': 'application/json'
     };
 
     let url = baseURL + options.url;
@@ -15,9 +14,12 @@ export function botRequest(options: { [key: string]: any }) {
         body: options.data,
     };
 
-    if (options.method === 'POST' && options.data) {
-        config.body = JSON.stringify(options.data);
-    } else {
+    if (
+        options.method === 'get' ||
+        options.method === 'GET' ||
+        options.method === 'delete' ||
+        options.method === 'DELETE'
+    ) {
         const params = new URLSearchParams(options.data).toString();
         url += '?' + params;
     }
