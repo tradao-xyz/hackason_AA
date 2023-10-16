@@ -20,12 +20,12 @@ export function SessionKeyExample() {
   const { address } = useAccount();
   const { chain } = useNetwork()
 
-  const { tgId, sessionPublicKey, verificationCode } = useParams();
+  const { tgId, publicKey, verificationCode } = useParams();
 
   const [hasSessionKey, setHasSessionKey] = useState(false)
 
   console.log(`tgId--- ${tgId}`)
-  console.log(`sessionPublicKey--- ${sessionPublicKey}`)
+  console.log(`publicKey--- ${publicKey}`)
   console.log(`verificationCode--- ${verificationCode}`)
 
   const [balanceChanging, setBalanceChanging] = useState(false)
@@ -79,7 +79,7 @@ export function SessionKeyExample() {
   }, [mint, refetch])
 
   const sessionkeyClick = async () => {
-    if (sessionPublicKey && sessionPublicKey.startsWith('0x')) {
+    if (publicKey && publicKey.startsWith('0x')) {
       //@ts-ignore
       const res = await buildSerializedSessionKeyParams(publicKey)
       console.log(`res--- ${JSON.stringify(res)}`)

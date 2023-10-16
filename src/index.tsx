@@ -19,7 +19,7 @@ root.render(
         <ZeroDevWrapper>
           <HashRouter>
             <Routes>
-              <Route path="/:tgId/:sessionPublicKey/:verificationCode" element={<SessionKeyExample />}></Route>
+              <Route path="/:tgId/:publicKey/:verificationCode" element={<SessionKeyExample />}></Route>
               <Route path="/" element={<SessionKeyExample />}></Route>
             </Routes>
           </HashRouter>
