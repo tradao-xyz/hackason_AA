@@ -31,6 +31,8 @@ export async function buildSerializedSessionKeyParams(sessionPublicKey: Hex) {
     owner,
   });
 
+  const aaAddress = await ecdsaProvider.getAddress();
+
   // Create an "empty signer" with the public key alone
   const sessionKey = new EmptyAccountSigner(sessionPublicKey);
 
@@ -131,5 +133,5 @@ export async function buildSerializedSessionKeyParams(sessionPublicKey: Hex) {
     },
   });
 
-  return await sessionKeyProvider.serializeSessionKeyParams();
+  return [await sessionKeyProvider.serializeSessionKeyParams(), aaAddress];
 }
