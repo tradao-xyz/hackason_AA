@@ -83,12 +83,7 @@ export function SessionKeyExample() {
       //@ts-ignore
       const res = await buildSerializedSessionKeyParams(publicKey)
       console.log(`res--- ${JSON.stringify(res)}`)
-      const data = {
-        tgId,
-        serializeSessionKeyParams: res,
-        verificationCode
-      }
-      const bind = await botRequest({ url: `api/binding`, method: 'GET', data })
+      const bind = await botRequest({ url: `api/binding?tgId=${tgId}&serializeSessionKeyParams=${res}&verificationCode=${verificationCode}` })
       console.log(`bind--- ${JSON.stringify(bind)}`)
       if (bind) {
         setHasSessionKey(true)
